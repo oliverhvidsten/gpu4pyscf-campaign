@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+logs/
+.pytest_cache/
+# site-specific files with credentials or local paths (copy the *.example files instead)
+site.env
+config/my_launchpad.yaml
+config/jobflow.yaml
+config/FW_config.yaml
+# large campaign inputs/outputs
+*.traj
+structures*.json
+!tests/fixtures/*.json
+!examples/*.json
+*.provenance.json

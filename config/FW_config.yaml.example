@@ -1,0 +1,5 @@
+# FireWorks config (FW_CONFIG_FILE). Copy to ~/fw_config/FW_config_campaign.yaml and fix the paths.
+# No ADD_USER_PACKAGES: jobflow's JobFiretask is resolved by its explicit module path.
+CONFIG_FILE_DIR: /home/<user>/fw_config
+LAUNCHPAD_LOC: /home/<user>/fw_config/my_launchpad.yaml
+QUEUE_UPDATE_INTERVAL: 1

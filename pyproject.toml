@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpu4pyscf-campaign"
+version = "0.1.0"
+description = "JSON molecule set -> Lewis starting geometries -> one FireWorks/jobflow job per molecule running the qcflow-gpu4pyscf GPU geometry optimizer"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "jobflow>=0.3.1",
+    "atomate2>=0.1.5",
+    "fireworks>=2.0",
+    "maggma",
+    "pymatgen",
+    "emmet-core",
+    "pydantic>=2",
+    "PyYAML",
+    "monty",
+]
+
+[project.optional-dependencies]
+# The Lewis-start builder; openbabel (conda-forge) is also needed at run time.
+lewis = ["lewis-geometry-solver @ git+https://github.com/oliverhvidsten/lewis_geometry_solver.git@b750e52", "rdkit"]
+test = ["pytest"]
+
+[project.scripts]
+gpu4pyscf-campaign = "gpu4pyscf_campaign.cli:main"
+
+[tool.setuptools]
+packages = ["gpu4pyscf_campaign"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]

@@ -1,0 +1,33 @@
+# Production settings for crn_utils.pyscf_calc.optimize_and_analyze (qcflow-gpu4pyscf).
+# This dict is passed verbatim as `calc_config` and stored in every firework spec and task
+# document, so the settings a job ran with are always recorded.
+#
+# NOTE: pyscf_calc's own code defaults are the OLD slow settings (density guess, (99,590) grid
+# everywhere, SCF 1e-10) -- every key below must stay present. Validated on the FSI/PF6 set:
+#   * grids / SCF tolerance / atomic guess / mean-field reuse: 2.0x faster than the reference
+#     settings, median |dE| 0.007 kcal/mol, no energy bias (500-molecule study, 2026-09-28)
+#   * SCF protocol CDIIS (50 cycles) -> SOSCF continuation -> cold restart chain
+#     (`max_scf_cycles`, `scf_protocol`): adopted 2026-10-03 for robustness; needs qcflow-gpu4pyscf
+#     at or after commit 0638ffc (older checkouts reject the two keys).
+xc: wb97mv
+basis: def2-svpd
+smd_solvent: EC:EMC
+grid:
+  level: 4
+  prune: nwchem
+  atom_grid:
+    H:
+    - 40
+    - 194
+final_grid:
+  atom_grid:
+  - 99
+  - 590
+  prune: nwchem
+nlc_grid:
+  level: 1
+scf_conv_tol: 1.0e-09
+scf_guess: atomic
+reuse_mf: true
+max_scf_cycles: 50
+scf_protocol: soscf_first

@@ -1,0 +1,13 @@
+# FireWorks launchpad (copy to ~/fw_config/my_launchpad.yaml, chmod 600). The MongoDB must be
+# reachable from the cluster's compute nodes.
+host: mongodb07.nersc.gov
+port: 27017
+name: <database>
+username: <user>
+password: <password>
+ssl: false
+authsource: <database>
+logdir: null
+strm_lvl: INFO
+user_indices: []
+wf_user_indices: []

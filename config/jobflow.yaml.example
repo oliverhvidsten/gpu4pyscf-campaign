@@ -1,0 +1,21 @@
+# jobflow settings file (JOBFLOW_CONFIG_FILE). Task documents go to `collection_name`, the
+# trajectories (the `data` additional store) to GridFS. Copy to ~/fw_config/jobflow_campaign.yaml,
+# fill in the credentials, chmod 600. Same credentials as the launchpad are fine.
+JOB_STORE:
+  docs_store:
+    type: MongoStore
+    database: <database>
+    host: mongodb07.nersc.gov
+    port: 27017
+    username: <user>
+    password: <password>
+    collection_name: fsi_pf6_opt
+  additional_stores:
+    data:
+      type: GridFSStore
+      database: <database>
+      host: mongodb07.nersc.gov
+      port: 27017
+      username: <user>
+      password: <password>
+      collection_name: fsi_pf6_opt_data
